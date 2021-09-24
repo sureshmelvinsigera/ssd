@@ -11,7 +11,7 @@
 
 
 ####  http://localhost:8000/auth/users/register/
-```text
+```json
 {
 	"username":"markV",
 	"first_name": "Mark Vande", 
@@ -21,3 +21,11 @@
 }
 ```
 
+#### http://localhost:8000/auth/users/login/
+```json
+{
+	"username":"markV",
+	"email": "markv@nasa.gov",
+	"password": "u73dg2626_#4"
+}
+```
