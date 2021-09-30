@@ -6,14 +6,15 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 # we can allow all the users to see the view
 from rest_framework.permissions import AllowAny
 
-from .serializers import RegistrationSerializer, LoginSerializer, UserListSerializer
-from .models import User
+from .serializers import AstronautRegistrationSerializer, AstronautLoginSerializer, UserListSerializer, \
+    ScientistRegistrationSerializer, ScientistLoginSerializer
+from .models import User, Astronaut
 
 
-class RegistrationAPIView(APIView):
+class AstronautRegistrationAPIView(APIView):
     # Allow any user (authenticated or not) to hit this endpoint.
     permission_classes = (AllowAny,)
-    serializer_class = RegistrationSerializer
+    serializer_class = AstronautRegistrationSerializer
 
     def post(self, request):
         user = request.data.get('user', {})
@@ -32,9 +33,9 @@ class RegistrationAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class LoginAPIView(APIView):
+class AstronautLoginAPIView(APIView):
     permission_classes = (AllowAny,)
-    serializer_class = LoginSerializer
+    serializer_class = AstronautLoginSerializer
 
     def post(self, request):
         user = request.data.get('user', {})
@@ -49,11 +50,50 @@ class LoginAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class UserListViewSet(ReadOnlyModelViewSet):
+class ScientistRegistrationAPIView(APIView):
+    # Allow any user (authenticated or not) to hit this endpoint.
+    permission_classes = (AllowAny,)
+    serializer_class = ScientistRegistrationSerializer
+
+    def post(self, request):
+        user = request.data.get('user', {})
+        if not user:
+            user = {
+                "email": request.data.get('email'),
+                "username": request.data.get('username'),
+                "password": request.data.get('password'),
+                "first_name": request.data.get('first_name'),
+                "last_name": request.data.get('last_name'),
+            }
+        serializer = self.serializer_class(data=user)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class ScientistAstronautLoginAPIView(APIView):
+    permission_classes = (AllowAny,)
+    serializer_class = ScientistLoginSerializer
+
+    def post(self, request):
+        user = request.data.get('user', {})
+        if not user:
+            user = {
+                "username": request.data.get('username'),
+                "password": request.data.get('password')
+            }
+        serializer = self.serializer_class(data=user)
+        serializer.is_valid(raise_exception=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class AstronautUserListViewSet(ReadOnlyModelViewSet):
     """
     This view set automatically provides `list` and `detail` actions.
     """
 
-    queryset = User.objects.all()
+    queryset = Astronaut.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = UserListSerializer

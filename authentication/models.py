@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager, PermissionsMixin
@@ -107,3 +108,23 @@ class User(AbstractBaseUser, PermissionsMixin):
         token = jwt_encode_handler(payload)
 
         return token
+
+
+class Astronaut(User):
+    objects = UserManager()
+    age = models.IntegerField(
+        default=1,
+        validators=[
+            MaxValueValidator(100),
+            MinValueValidator(1)
+        ])
+    weight = models.FloatField(null=False, blank=False)
+    blood_type = models.CharField(null=False, blank=False, max_length=10)
+    blood_pressure = models.FloatField(null=False, blank=False)
+    heart_rate = models.FloatField(null=False, blank=False)
+    muscle_mass = models.FloatField(null=False, blank=False)
+
+
+class Scientist(User):
+    objects = UserManager()
+    specialty = models.CharField(null=False, blank=False, max_length=100)
