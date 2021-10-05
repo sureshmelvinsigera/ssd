@@ -1,5 +1,21 @@
 # SSDCS_PCOM7E August 2021
 
+## Installation
+Run the following command in your terminal to install the requirements:
+
+```sh
+pip install -r requirements.txt
+```
+
+Note: you may need to use `pip3` instead of `pip` if you are using a Linux operating system.
+
+Run the application by using the following commands:
+```
+python manage.py migrate
+python manage.py runserver
+```
+
+Note that `python manage.py runserver` is sufficient to run the application; `python manage.py migrate` must be executed if the model-based code has changed.
 ## API Endpoints
 
 ### Auth
