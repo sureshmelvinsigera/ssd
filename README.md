@@ -44,7 +44,8 @@ Note that `python manage.py runserver` is sufficient to run the application; `py
 | POST | http://127.0.0.1:8000/auth/users/astronaut/login | Sign up | Public | 
 | POST | http://127.0.0.1:8000/auth/users/scientist/register/ | Log in | Public | 
 | POST | http://127.0.0.1:8000/auth/users/scientist/login | Sign up | Public | 
-| GET | http://127.0.0.1:8000/astronauts/in-space/ | Retrieve all astronauts in space | Public | Public 
+| GET | http://127.0.0.1:8000/astronauts/in-space/ | Retrieve all astronauts in space | Public
+| GET | http://127.0.0.1:8000/astronauts/health-report/ | Retrieve all health reports of the current logged in astronaut| Private
 
 #### http://127.0.0.1:8000/auth/users/astronaut/register/
 
@@ -90,7 +91,7 @@ Note that `python manage.py runserver` is sufficient to run the application; `py
 }
 ```
 
-#### http://127.0.0.1:8000/astronauts/in-space/
+#### http://127.0.0.1:8000/astronauts/health-report/
 
 ```json
 {
@@ -102,6 +103,25 @@ Note that `python manage.py runserver` is sufficient to run the application; `py
             "id": 2,
             "username": "markV",
             "email": "markv@nasa.gov"
+        }
+    ]
+}
+```
+
+#### http://127.0.0.1:8000/astronauts/health-report/
+
+```json
+{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "weight": 155,
+            "blood_type": "B",
+            "blood_pressure": 120,
+            "heart_rate": 80
         }
     ]
 }

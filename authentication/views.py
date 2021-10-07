@@ -1,14 +1,16 @@
+from rest_framework import generics
+from rest_framework import viewsets
 from rest_framework import status  # this helps us to know HTTP status of our request
 from rest_framework.response import Response  # We need this to convert DB query to JSON
 from rest_framework.views import APIView
 # Not all the models need CRUD, sometimes all we need to do is read
 from rest_framework.viewsets import ReadOnlyModelViewSet
 # we can allow all the users to see the view
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from .serializers import AstronautRegistrationSerializer, AstronautLoginSerializer, UserListSerializer, \
-    ScientistRegistrationSerializer, ScientistLoginSerializer
-from .models import User, Astronaut
+    ScientistRegistrationSerializer, ScientistLoginSerializer, AstronautHealthReportSerializer
+from .models import User, Astronaut, AstronautHealthReport
 
 
 class AstronautRegistrationAPIView(APIView):
@@ -97,3 +99,14 @@ class AstronautUserListViewSet(ReadOnlyModelViewSet):
     queryset = Astronaut.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = UserListSerializer
+
+
+class AstronautHealthReportSerializerViewSet(viewsets.ModelViewSet):
+    print('calling AstronautHealthReportSerializerViewSet')
+    permission_classes = (IsAuthenticated,)
+
+    serializer_class = AstronautHealthReportSerializer
+
+    def get_queryset(self):
+        queryset = AstronautHealthReport.objects.all()
+        return queryset

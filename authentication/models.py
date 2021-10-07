@@ -129,7 +129,13 @@ class AstronautHealthReport(models.Model):
     muscle_mass = models.FloatField(null=False, blank=False)
     astronaut = models.ForeignKey(Astronaut, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.astronaut.username
+
 
 class Scientist(User):
     objects = UserManager()
     specialty = models.CharField(null=False, blank=False, max_length=100)
+
+    def __str__(self):
+        return self.specialty
