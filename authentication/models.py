@@ -118,11 +118,16 @@ class Astronaut(User):
             MaxValueValidator(100),
             MinValueValidator(1)
         ])
+    health_report = models
+
+
+class AstronautHealthReport(models.Model):
     weight = models.FloatField(null=False, blank=False)
     blood_type = models.CharField(null=False, blank=False, max_length=10)
     blood_pressure = models.FloatField(null=False, blank=False)
     heart_rate = models.FloatField(null=False, blank=False)
     muscle_mass = models.FloatField(null=False, blank=False)
+    astronaut = models.ForeignKey(Astronaut, on_delete=models.CASCADE)
 
 
 class Scientist(User):
