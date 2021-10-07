@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'api',
     'authentication',
@@ -142,3 +143,6 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=5184000),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=60),
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+ROOT_URLCONF = 'ssd.urls'
