@@ -1,6 +1,24 @@
 # SSDCS_PCOM7E August 2021
 
 ## Installation
+
+Clone git repository
+
+```
+git clone git@github.com:sureshmelvinsigera/ssd.git
+cd ssd
+```
+
+Create Python3 virtual environment  
+```
+python3 -m venv <name_of_virtualenv>
+````
+
+Activate virtual environment
+```
+source venv/bin/activate
+```
+
 Run the following command in your terminal to install the requirements:
 
 ```sh
