@@ -9,12 +9,14 @@ git clone git@github.com:sureshmelvinsigera/ssd.git
 cd ssd
 ```
 
-Create Python3 virtual environment  
+Create Python3 virtual environment
+
 ```
 python3 -m venv <name_of_virtualenv>
 ````
 
 Activate virtual environment
+
 ```
 source venv/bin/activate
 ```
@@ -28,12 +30,15 @@ pip install -r requirements.txt
 Note: you may need to use `pip3` instead of `pip` if you are using a Linux operating system.
 
 Run the application by using the following commands:
+
 ```
 python manage.py migrate
 python manage.py runserver
 ```
 
-Note that `python manage.py runserver` is sufficient to run the application; `python manage.py migrate` must be executed if the model-based code has changed.
+Note that `python manage.py runserver` is sufficient to run the application; `python manage.py migrate` must be executed
+if the model-based code has changed.
+
 ## API Endpoints
 
 ### Auth
@@ -95,34 +100,43 @@ Note that `python manage.py runserver` is sufficient to run the application; `py
 
 ```json
 {
-    "count": 1,
-    "next": null,
-    "previous": null,
-    "results": [
-        {
-            "id": 2,
-            "username": "markV",
-            "email": "markv@nasa.gov"
-        }
-    ]
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 2,
+      "username": "markV",
+      "email": "markv@nasa.gov"
+    }
+  ]
 }
 ```
 
 #### http://127.0.0.1:8000/astronauts/health-report/
+Headers
+```json
+{
+  "Key": "Authorization",
+  "Value": JWT
+  <token>
+}
+
+```
 
 ```json
 {
-    "count": 1,
-    "next": null,
-    "previous": null,
-    "results": [
-        {
-            "id": 1,
-            "weight": 155,
-            "blood_type": "B",
-            "blood_pressure": 120,
-            "heart_rate": 80
-        }
-    ]
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "weight": 155,
+      "blood_type": "B",
+      "blood_pressure": 120,
+      "heart_rate": 80
+    }
+  ]
 }
 ```
