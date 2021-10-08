@@ -7,10 +7,13 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ReadOnlyModelViewSet
 # we can allow all the users to see the view
 from rest_framework.permissions import AllowAny, IsAuthenticated
-
 from .serializers import AstronautRegistrationSerializer, AstronautLoginSerializer, UserListSerializer, \
     ScientistRegistrationSerializer, ScientistLoginSerializer, AstronautHealthReportSerializer
 from .models import User, Astronaut, AstronautHealthReport
+from rest_framework.exceptions import (
+    ValidationError, PermissionDenied
+)
+from django.shortcuts import get_object_or_404
 
 
 class AstronautRegistrationAPIView(APIView):
@@ -115,7 +118,7 @@ class AstronautUserListViewSet(ReadOnlyModelViewSet):
 
 class AstronautHealthReportViewSet(viewsets.ModelViewSet):
     """
-    fetch all the health reports for the current logged in astronaut
+    A view set that listing, retrieving astronauts health reports.
     """
     permission_classes = (IsAuthenticated,)
 
@@ -124,4 +127,3 @@ class AstronautHealthReportViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = AstronautHealthReport.objects.all().filter(astronaut=self.request.user)
         return queryset
-

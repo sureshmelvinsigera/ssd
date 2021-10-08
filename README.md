@@ -113,13 +113,12 @@ if the model-based code has changed.
 }
 ```
 
-#### http://127.0.0.1:8000/astronauts/health-report/
+#### http://127.0.0.1:8000/astronauts/health-reports/
 Headers
 ```json
 {
   "Key": "Authorization",
-  "Value": JWT
-  <token>
+  "Value": JWT <TOKEN>
 }
 
 ```
@@ -138,5 +137,25 @@ Headers
       "heart_rate": 80
     }
   ]
+}
+```
+
+
+#### http://localhost:8000/astronaut/health-reports/1
+Headers
+```json
+{
+  "Key": "Authorization",
+  "Value": JWT <TOKEN>
+}
+```
+
+```json
+{
+    "id": 1,
+    "weight": 155,
+    "blood_type": "B",
+    "blood_pressure": 120,
+    "heart_rate": 80
 }
 ```

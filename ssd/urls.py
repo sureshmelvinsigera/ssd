@@ -16,13 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from authentication.views import AstronautHealthReportViewSet
+from rest_framework.routers import DefaultRouter
 
-from authentication.views import AstronautUserListViewSet, AstronautHealthReportViewSet
+router = DefaultRouter()
+router.register(r'astronaut/health-reports', AstronautHealthReportViewSet, basename='astronaut')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^astronauts/in-space/', AstronautUserListViewSet.as_view({'get': 'list'}), name='astronaut_in_space'),
-    url(r'^astronauts/health-report/', AstronautHealthReportViewSet.as_view({'get': 'list'}),
-        name='astronaut_in_space'),
     path('auth/', include('authentication.urls')),
+    path('', include(router.urls))
 ]
