@@ -17,12 +17,12 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 
-from authentication.views import AstronautUserListViewSet, AstronautHealthReportSerializerViewSet
+from authentication.views import AstronautUserListViewSet, AstronautHealthReportViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^astronauts/in-space/', AstronautUserListViewSet.as_view({'get': 'list'}), name='astronaut_in_space'),
-    url(r'^astronauts/health-report/', AstronautHealthReportSerializerViewSet.as_view({'get': 'list'}),
+    url(r'^astronauts/health-report/', AstronautHealthReportViewSet.as_view({'get': 'list'}),
         name='astronaut_in_space'),
     path('auth/', include('authentication.urls')),
 ]

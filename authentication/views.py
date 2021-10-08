@@ -14,6 +14,9 @@ from .models import User, Astronaut, AstronautHealthReport
 
 
 class AstronautRegistrationAPIView(APIView):
+    """
+    API endpoint for astronaut registration
+    """
     # Allow any user (authenticated or not) to hit this endpoint.
     permission_classes = (AllowAny,)
     serializer_class = AstronautRegistrationSerializer
@@ -36,6 +39,9 @@ class AstronautRegistrationAPIView(APIView):
 
 
 class AstronautLoginAPIView(APIView):
+    """
+    API endpoint for astronaut login
+    """
     permission_classes = (AllowAny,)
     serializer_class = AstronautLoginSerializer
 
@@ -53,6 +59,9 @@ class AstronautLoginAPIView(APIView):
 
 
 class ScientistRegistrationAPIView(APIView):
+    """
+    API endpoint for scientist registration
+    """
     # Allow any user (authenticated or not) to hit this endpoint.
     permission_classes = (AllowAny,)
     serializer_class = ScientistRegistrationSerializer
@@ -74,7 +83,10 @@ class ScientistRegistrationAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class ScientistAstronautLoginAPIView(APIView):
+class ScientistLoginAPIView(APIView):
+    """
+    API endpoint for scientist login
+    """
     permission_classes = (AllowAny,)
     serializer_class = ScientistLoginSerializer
 
@@ -101,12 +113,15 @@ class AstronautUserListViewSet(ReadOnlyModelViewSet):
     serializer_class = UserListSerializer
 
 
-class AstronautHealthReportSerializerViewSet(viewsets.ModelViewSet):
-    print('calling AstronautHealthReportSerializerViewSet')
+class AstronautHealthReportViewSet(viewsets.ModelViewSet):
+    """
+    fetch all the health reports for the current logged in astronaut
+    """
     permission_classes = (IsAuthenticated,)
 
     serializer_class = AstronautHealthReportSerializer
 
     def get_queryset(self):
-        queryset = AstronautHealthReport.objects.all()
+        queryset = AstronautHealthReport.objects.all().filter(astronaut=self.request.user)
         return queryset
+
