@@ -144,5 +144,17 @@ JWT_AUTH = {
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=60),
 }
 
+MIDDLEWARE = [
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware"
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8002",
+]
+
 CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'ssd.urls'
