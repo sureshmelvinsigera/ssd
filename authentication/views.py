@@ -110,7 +110,6 @@ class AstronautUserListViewSet(ReadOnlyModelViewSet):
     """
     This view set automatically provides `list` and `detail` actions.
     """
-    print('calling this')
     queryset = Astronaut.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = UserListSerializer
@@ -127,3 +126,25 @@ class AstronautHealthReportViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = AstronautHealthReport.objects.all().filter(astronaut=self.request.user)
         return queryset
+
+    def create(self, request, *args, **kwargs):
+        """
+        Create new health report for current logged in astronaut
+        """
+        # obtain the data from the API endpoint
+        data = request.data
+        # assign the current logged in astronaut to the object and
+        # create a new astronaut health report object
+        astronaut_health_report = AstronautHealthReport.objects.create(
+            weight=data['weight'],
+            blood_type=data['blood_type'],
+            blood_pressure=data['blood_pressure'],
+            heart_rate=data['heart_rate'],
+            muscle_mass=data['muscle_mass'],
+            astronaut=Astronaut.objects.filter(username=self.request.user.username).get()
+        )
+        # save astronaut health report object to DB
+        astronaut_health_report.save()
+        # serialize the data for JSON output
+        serializer = AstronautHealthReportSerializer(astronaut_health_report)
+        return Response(serializer.data)
