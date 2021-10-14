@@ -36,6 +36,12 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+Run the website by typing the following in the root directory:
+
+```
+python -m http.server 8002
+```
+
 Note that `python manage.py runserver` is sufficient to run the application; `python manage.py migrate` must be executed
 if the model-based code has changed.
 
