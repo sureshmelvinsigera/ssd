@@ -118,7 +118,6 @@ class Astronaut(User):
             MaxValueValidator(100),
             MinValueValidator(1)
         ])
-    health_report = models
 
 
 class AstronautHealthReport(models.Model):
@@ -137,5 +136,11 @@ class Scientist(User):
     objects = UserManager()
     specialty = models.CharField(null=False, blank=False, max_length=100)
 
+
+class HealthReportFeedBack(models.Model):
+    recommendation = models.TextField(null=True, blank=True)
+    astronaut_health_report = models.ForeignKey(AstronautHealthReport, on_delete=models.CASCADE)
+    scientist = models.ForeignKey(Scientist, on_delete=models.CASCADE)
+
     def __str__(self):
-        return self.specialty
+        return self.recommendation
