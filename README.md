@@ -56,6 +56,7 @@ if the model-based code has changed.
 | POST | http://127.0.0.1:8000/auth/users/scientist/register/ | Log in | Public | 
 | POST | http://127.0.0.1:8000/auth/users/scientist/login | Sign up | Public | 
 | GET | http://127.0.0.1:8000/astronauts/in-space/ | Retrieve all astronauts in space | Public
+| GET | http://localhost:8000/astronaut/health-reports/ | Create new health report for current logged in astronaut | Private
 | GET | http://localhost:8000/astronaut/health-reports/ | Retrieve all health reports of the current logged in astronaut| Private
 | GET | http://localhost:8000/astronaut/health-reports/1 | Retrieve single health report of the current logged in astronaut| Private
 
@@ -103,7 +104,35 @@ if the model-based code has changed.
 }
 ```
 
+
+### http://localhost:8000/astronaut/health-reports/
+Create new health report
+Headers
+```json
+{
+  "Key": "Authorization",
+  "Value": JWT <TOKEN>
+}
+```
+
+```json
+{
+      "weight": 155,
+      "blood_type": "B",
+      "blood_pressure": 120,
+      "heart_rate": 80,
+      "muscle_mass": 34
+}
+```
+
 #### http://127.0.0.1:8000/astronauts/health-report/
+Headers
+```json
+{
+  "Key": "Authorization",
+  "Value": JWT <TOKEN>
+}
+```
 
 ```json
 {
