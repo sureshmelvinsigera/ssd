@@ -16,11 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
-from authentication.views import AstronautHealthReportViewSet
+from authentication.views import AstronautHealthReportViewSet, AstronautUserListViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'astronaut/health-reports', AstronautHealthReportViewSet, basename='astronaut')
+router.register(r'astronauts/in-space', AstronautUserListViewSet, basename='astronaut_in_space')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

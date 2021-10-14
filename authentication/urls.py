@@ -8,5 +8,4 @@ urlpatterns = [
     url(r'^users/astronaut/login/$', AstronautLoginAPIView.as_view(), name='astronaut_login'),
     url(r'^users/scientist/register/$', ScientistRegistrationAPIView.as_view(), name='scientist_register'),
     url(r'^users/scientist/login/$', ScientistLoginAPIView.as_view(), name='scientist_login'),
-    url(r'^astronauts/in-space/', AstronautUserListViewSet.as_view({'get': 'list'}), name='astronaut_in_space'),
 ]

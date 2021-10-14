@@ -110,7 +110,7 @@ class AstronautUserListViewSet(ReadOnlyModelViewSet):
     """
     This view set automatically provides `list` and `detail` actions.
     """
-
+    print('calling this')
     queryset = Astronaut.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = UserListSerializer
