@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate
 from rest_framework import serializers
-from .models import User, AstronautHealthReport
+from .models import User, AstronautHealthReport, HealthReportFeedBack
 from .models import Astronaut
 from .models import Scientist
 
@@ -134,15 +134,35 @@ class ScientistLoginSerializer(serializers.ModelSerializer):
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'email')
+        fields = (
+            'id',
+            'username',
+            'email'
+        )
 
 
 class AstronautHealthReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = AstronautHealthReport
-        fields = ('id',
-                  'weight',
-                  'blood_type',
-                  'blood_pressure',
-                  'heart_rate',
-                  )
+        fields = (
+            'id',
+            'weight',
+            'blood_type',
+            'blood_pressure',
+            'heart_rate',
+        )
+
+
+class ScientistViewAstronautHealthReportSerializer(serializers.ModelSerializer):
+    astronaut = serializers.ReadOnlyField(source='astronaut.username')
+
+    class Meta:
+        model = AstronautHealthReport
+        fields = (
+            'id',
+            'astronaut',
+            'weight',
+            'blood_type',
+            'blood_pressure',
+            'heart_rate',
+        )

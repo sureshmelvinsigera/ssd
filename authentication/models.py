@@ -139,8 +139,8 @@ class Scientist(User):
 
 class HealthReportFeedBack(models.Model):
     recommendation = models.TextField(null=True, blank=True)
-    astronaut_health_report = models.ForeignKey(AstronautHealthReport, on_delete=models.CASCADE)
     scientist = models.ForeignKey(Scientist, on_delete=models.CASCADE)
+    astronaut = models.ForeignKey(Astronaut, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.recommendation
