@@ -47,8 +47,6 @@ if the model-based code has changed.
 
 ## API Endpoints
 
-### Auth
-
 | Method | Url          | Description  |   Endpoint security |
 | ------ |------------| ------------| -------------|
 | POST | http://127.0.0.1:8000/auth/users/astronaut/register/ | Log in | Public |
@@ -59,6 +57,7 @@ if the model-based code has changed.
 | GET | http://localhost:8000/astronaut/health-reports/ | Create new health report for current logged in astronaut | Private
 | GET | http://localhost:8000/astronaut/health-reports/ | Retrieve all health reports of the current logged in astronaut| Private
 | GET | http://localhost:8000/astronaut/health-reports/1 | Retrieve single health report of the current logged in astronaut| Private
+| GET | http://127.0.0.1:8000/swagger-docs/ | API documentation | Public | 
 
 #### http://127.0.0.1:8000/auth/users/astronaut/register/
 
