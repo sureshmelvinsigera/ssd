@@ -76,7 +76,6 @@ if the model-based code has changed.
 
 ```json
 {
-  "username": "markV",
   "email": "markv@nasa.gov",
   "password": "u73dg2626_#4"
 }
