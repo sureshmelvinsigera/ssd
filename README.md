@@ -59,6 +59,7 @@ if the model-based code has changed.
 | GET | http://localhost:8000/astronaut/health-reports/1 | Retrieve single health report of the current logged in astronaut| Private
 | GET | http://localhost:8000/scientist/health-reports/ | Scientist retrieve all health report from all the astronauts | Private
 | GET | http://localhost:8000/scientist/health-reports/1 | Scientist retrieve single health report of the astronaut| Private
+| PUT | http://localhost:8000/scientist/health-reports/1 | Scientist give feed back to the astronaut| Private
 | GET | http://127.0.0.1:8000/swagger-docs/ | API documentation | Public | 
 
 #### http://127.0.0.1:8000/auth/users/astronaut/register/
@@ -193,5 +194,25 @@ Headers
     "blood_type": "B",
     "blood_pressure": 120,
     "heart_rate": 80
+}
+```
+
+
+##### http://localhost:8000/scientist/health-reports/1
+Headers
+```json
+{
+  "Key": "Authorization",
+  "Value": JWT <TOKEN>
+}
+```
+
+```json
+{
+    "weight": 155,
+    "blood_type": "B",
+    "blood_pressure": 120,
+    "heart_rate": 80,
+    "feedback": "No feedback as of yet"
 }
 ```

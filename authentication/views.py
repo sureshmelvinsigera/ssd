@@ -15,7 +15,7 @@ from .serializers import \
     ScientistLoginSerializer, \
     AstronautHealthReportSerializer, \
     ScientistViewAstronautHealthReportSerializer
-from .models import User, Astronaut, AstronautHealthReport, HealthReportFeedBack
+from .models import User, Astronaut, AstronautHealthReport, Scientist
 from rest_framework.exceptions import (
     ValidationError, PermissionDenied
 )
@@ -158,14 +158,12 @@ class AstronautHealthReportViewSet(viewsets.ModelViewSet):
 
 class ScientistViewAstronautHealthReportViewSet(viewsets.ModelViewSet):
     """
-    A view set that listing, retrieving astronauts health reports.
+    A view set that listing, retrieving and updating astronauts health reports.
     """
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated]
 
     serializer_class = ScientistViewAstronautHealthReportSerializer
 
     def get_queryset(self):
         queryset = AstronautHealthReport.objects.all().filter(astronaut=self.request.user)
         return queryset
-
-

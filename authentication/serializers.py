@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate
 from rest_framework import serializers
-from .models import User, AstronautHealthReport, HealthReportFeedBack
+from .models import User, AstronautHealthReport
 from .models import Astronaut
 from .models import Scientist
 
@@ -150,6 +150,7 @@ class AstronautHealthReportSerializer(serializers.ModelSerializer):
             'blood_type',
             'blood_pressure',
             'heart_rate',
+            'feedback'
         )
 
 
@@ -165,4 +166,5 @@ class ScientistViewAstronautHealthReportSerializer(serializers.ModelSerializer):
             'blood_type',
             'blood_pressure',
             'heart_rate',
+            'feedback',
         )
