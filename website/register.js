@@ -33,11 +33,11 @@ function register_via_api(endpoint, credentials) {
         data: JSON.stringify(credentials),
         contentType:"application/json; charset=utf-8",
         success: function(data) {
-            // TODO: set JWT and redirect
-            console.log(data);
+            alert("Account successfully registered.");
+            window.location.replace("http://localhost:8002/");    
         },
         error: function(error) {
-            display_login_error_message(error.responseJSON)
+            display_registration_error_message(error.responseJSON);
         }
     });
 }
