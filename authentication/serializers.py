@@ -9,7 +9,9 @@ class AstronautRegistrationSerializer(serializers.ModelSerializer):
     """Serializers registration requests and creates a new astronaut."""
 
     password = serializers.CharField(
-        max_length=255,
+        # A minimum password length of 8 characters is suggested as a minimum, while a maximum password length of 64 characters is suggested because 
+        # higher password lengths can be used to perform a denial-of-service due to the increase in hashing computation necessary (OWASP, 2021).
+        max_length=64,
         min_length=8,
         write_only=True
     )
@@ -146,3 +148,6 @@ class AstronautHealthReportSerializer(serializers.ModelSerializer):
                   'blood_pressure',
                   'heart_rate',
                   )
+
+# References
+# OWASP. (2021) Minimum password length. Available from: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html [Accessed 16 October 2021].
