@@ -136,18 +136,37 @@ class ScientistLoginSerializer(serializers.ModelSerializer):
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'email')
+        fields = (
+            'id',
+            'username',
+            'email'
+        )
 
 
 class AstronautHealthReportSerializer(serializers.ModelSerializer):
     class Meta:
         model = AstronautHealthReport
-        fields = ('id',
-                  'weight',
-                  'blood_type',
-                  'blood_pressure',
-                  'heart_rate',
-                  )
+        fields = (
+            'id',
+            'weight',
+            'blood_type',
+            'blood_pressure',
+            'heart_rate',
+            'feedback'
+        )
 
-# References
-# OWASP. (2021) Minimum password length. Available from: https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html [Accessed 16 October 2021].
+
+class ScientistViewAstronautHealthReportSerializer(serializers.ModelSerializer):
+    astronaut = serializers.ReadOnlyField(source='astronaut.username')
+
+    class Meta:
+        model = AstronautHealthReport
+        fields = (
+            'id',
+            'astronaut',
+            'weight',
+            'blood_type',
+            'blood_pressure',
+            'heart_rate',
+            'feedback',
+        )
