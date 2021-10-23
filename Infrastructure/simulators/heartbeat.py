@@ -22,10 +22,13 @@ producer = KafkaProducer(bootstrap_servers=['172.17.0.1:9092'], value_serializer
 
 heartrate = pd.read_csv('ring_data.csv', header=None)
 
-# From the data source we selected 0.25 and 0.75 quantile values to stream the simulation between the boundaries of what a real device will stream
+# From the data source we selected 0.25 and 0.75 quantile values to stream the simulation between the boundaries of a regular blood pressure
+# For a lowe pressure individual MIN and 0.25 quantiles could be selected, on the opposite, 0.75 quantile and MAX values could be selected. 
+# It would need more data to refine our simulator to be close to what a real person would produce in terms of data. 
 
 b = heartrate[0].quantile(0.25)
 a = heartrate[0].quantile(0.75)
+
 
 # This last part stream the data to the Kafka topic, right now it is on its simplest form, but can be expanded to STOP and START with different commands
 
