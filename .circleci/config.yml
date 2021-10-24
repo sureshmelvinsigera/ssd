@@ -21,6 +21,9 @@ jobs:
           command: |
             . venv/bin/activate
             python3 api/tests.py authentication/tests.py
+      - run:
+          name: Linting code
+          command: |
             autopep8 -d -r --list-fixes
       - store_artifacts:
           path: test-reports/
