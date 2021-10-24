@@ -216,3 +216,16 @@ Headers
     "feedback": "No feedback as of yet"
 }
 ```
+
+## Security
+The security of the application could be improved further, however, due to specific constraints, additional measures could not be implemented. These measures are briefly discussed below.
+
+### Environment Variables
+One challenge with using version control tools on a public platform (i.e. Github), is that sensitive information (such as API keys) may need to be included in files in order for developers to clone and run the application. This is a critical security risk because once a repository/file is cloned to a device, it cannot be traced, increasing the risk of information leakage. Encrypted secrets (Github, 2021) make it possible for sensitive information to be kept safely, by keeping it centralized to the online repository. This was not implemented, because it would make it difficult for the marker to clone and run the repository locally.  
+
+### HTTPS
+HTTPS improves website security by encrypting communications and making website spoofing more difficult (Cloudflare, 2021). This was not implemented due to the costs associated with acquiring an SSL certificate, however, any production-ready system must use this protocol.
+
+## References
+Cloudflare. (2021) Why use HTTPS? Available from: https://www.cloudflare.com/en-gb/learning/ssl/why-use-https/ [Accessed 24 October 2021].
+Github. (2021) Encrypted secrets. Available from: https://docs.github.com/en/actions/security-guides/encrypted-secrets [Accessed 24 October 2021].
