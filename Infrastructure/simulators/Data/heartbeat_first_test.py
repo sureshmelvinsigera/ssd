@@ -1,5 +1,6 @@
 import pandas as pd
 import random
+import logging
 from time import sleep
 from json import dumps
 from kafka import KafkaProducer
@@ -32,8 +33,13 @@ a = heartrate[0].quantile(0.75)
 
 # This last part stream the data to the Kafka topic, right now it is on its simplest form, but can be expanded to STOP and START with different commands
 
+
 for x in range(1000):
     e = round(random.uniform(a, b), 2)
     data = {'rate' : e} # The data to be sent
-    producer.send('blood', value=data) # Sends the data to the selected topic, in this case bloodp
+    try:
+        producer.send('blood', value=data) # Sends the data to the selected topic, in this case bloodp
+    except:
+        logging.basicConfig(level = logging.INFO, filename = 'error.log') # Log the issue that prevented data to be saved, and then try again
+        continue
     sleep(900) # The producer waits 15 minutes to stream new data, this value is expressed in seconds, in this case 900 seconds
