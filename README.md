@@ -1,6 +1,7 @@
 # SSDCS_PCOM7E August 2021
 [![SSD](https://circleci.com/gh/sureshmelvinsigera/ssd.svg?style=svg)](https://circleci.com/gh/sureshmelvinsigera/ssd)
 
+This repository contains a monolithic application comprised of a database, application, and website frontend. 
 ## Installation
 
 Clone git repository
@@ -221,7 +222,15 @@ Headers
 ## Linting
 Autopep8 is used to lint code. Please note that the build will fail if your code does not comply with PEP 8 formatting standards. If your build fails due to linting, find out which lines to change by visiting the CircleCI page by clicking on the badge at the top of this README, locating the failed build, and then clicking "Running tests and linting code" for details. 
 
-## Security
+## Security Measures
+
+### Logging
+
+### Encryption
+JWT (JSON Web Tokens) are used
+
+###
+## Other Security Measures
 The security of the application could be improved further, however, due to specific constraints, additional measures could not be implemented. These measures are briefly discussed below.
 
 ### Environment Variables
@@ -231,8 +240,9 @@ One challenge with using version control tools on a public platform (i.e. Github
 HTTPS improves website security by encrypting communications and making website spoofing more difficult (Cloudflare, 2021). This was not implemented due to the costs associated with acquiring an SSL certificate, however, any production-ready system must use this protocol.
 
 ### Code Obfuscation
-
+Due to the existence of a web frontend, attackers can attempt to find ways of compromising the system by analyzing the JavaScript code. Obfuscation can prevent this from happening by obscuring all JavaScript through various means, such as changing variable names, adding decoy code which does not do anything, and other conversion mechanisms to make it extremely difficult to interpret the code (JScrambler, 2021). This would only be done at the deployment phase of a project, and would not be seen in a repository- only the website. This has not been implemented because the application is currently not hosted online. 
 
 ## References
 Cloudflare. (2021) Why use HTTPS? Available from: https://www.cloudflare.com/en-gb/learning/ssl/why-use-https/ [Accessed 24 October 2021].
 Github. (2021) Encrypted secrets. Available from: https://docs.github.com/en/actions/security-guides/encrypted-secrets [Accessed 24 October 2021].
+JScrambler. (2021) JavaScript Obfuscation: The Definitive Guide (2021). Available from: https://blog.jscrambler.com/javascript-obfuscation-the-definitive-guide [Accessed 24 October 2021].
