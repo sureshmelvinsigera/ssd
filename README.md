@@ -1,4 +1,5 @@
 # SSDCS_PCOM7E August 2021
+[![SSD](https://circleci.com/gh/sureshmelvinsigera/ssd.svg?style=svg)](https://circleci.com/gh/sureshmelvinsigera/ssd)
 
 ## Installation
 
@@ -217,6 +218,9 @@ Headers
 }
 ```
 
+## Linting
+Autopep8 is used to lint code. Please note that the build will fail if your code does not comply with PEP 8 formatting standards.
+
 ## Security
 The security of the application could be improved further, however, due to specific constraints, additional measures could not be implemented. These measures are briefly discussed below.
 
@@ -225,6 +229,9 @@ One challenge with using version control tools on a public platform (i.e. Github
 
 ### HTTPS
 HTTPS improves website security by encrypting communications and making website spoofing more difficult (Cloudflare, 2021). This was not implemented due to the costs associated with acquiring an SSL certificate, however, any production-ready system must use this protocol.
+
+### Code Obfuscation
+
 
 ## References
 Cloudflare. (2021) Why use HTTPS? Available from: https://www.cloudflare.com/en-gb/learning/ssl/why-use-https/ [Accessed 24 October 2021].
