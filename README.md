@@ -222,15 +222,7 @@ Headers
 ## Linting
 Autopep8 is used to lint code. Please note that the build will fail if your code does not comply with PEP 8 formatting standards. If your build fails due to linting, find out which lines to change by visiting the CircleCI page by clicking on the badge at the top of this README, locating the failed build, and then clicking "Running tests and linting code" for details. 
 
-## Security Measures
-
-### Logging
-
-### Encryption
-JWT (JSON Web Tokens) are used
-
-###
-## Other Security Measures
+## Unimplemented Security Measures
 The security of the application could be improved further, however, due to specific constraints, additional measures could not be implemented. These measures are briefly discussed below.
 
 ### Environment Variables
