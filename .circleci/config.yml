@@ -21,6 +21,7 @@ jobs:
           command: |
             . venv/bin/activate
             python3 tests.py
+            autopep8 -d -r --list-fixes
       - store_artifacts:
           path: test-reports/
           destination: python_app
