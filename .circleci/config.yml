@@ -21,7 +21,7 @@ jobs:
           command: |
             . venv/bin/activate
             python3 api/tests.py authentication/tests.py
-            autopep8 -d -r --list-fixes --exit-code 2
+            autopep8 -d -r 
       - store_artifacts:
           path: test-reports/
           destination: python_app
