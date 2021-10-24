@@ -18,10 +18,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# This should be kept as an environment variable and should never be pasted as plaintext in the code, but this was not done to make marking easier- see the README for details.
 SECRET_KEY = 'django-insecure-52*ze5j07eo$ehpj^3_q1n05y#9b61z1(!e2ajmo02vnjb30)c'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# This feature should always be False when the application is deployed to production, because it can leak sensitive information.
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -92,6 +92,7 @@ DATABASES = {
         'ENGINE': "django.db.backends.postgresql",
         'NAME': "ssd_iss",
         'USER': "postgres",
+        # This should be kept as an environment variable and should never be pasted as plaintext in the code, but this was not done to make marking easier- see the README for details.
         'PASSWORD': "Xoco_137946",
         'HOST': "3.129.7.239",
         'PORT': "5432",
@@ -101,17 +102,23 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
+# This variable controls how strict password validation is. Configurations are provided for common password validation requirements
+# (e.g. minimum length). 
 AUTH_PASSWORD_VALIDATORS = [
     {
+        # This configuration checks if a submitted password is too similar to other submitted information (such as usernames and emails)
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
+        # This configuration enforces a minimum length for password validation.
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
+        # This configuration checks if a submitted password is part of the 20,000 most common passwords.
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
+        # This configuration checks if a submitted password is purely numeric.
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
@@ -169,9 +176,13 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware"
 ]
 
+# CORS protects the application by preventing external web resources (such as third-party websites) from accessing the endpoints used on the website (Johnson, 2021). 
+# This setting allows web requests only from localhost:8002, which is where the frontend is hosted.
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8002",
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'ssd.urls'
+
+# References
+# Johnson, A. (2021). django-cors-headers. Available from: https://github.com/adamchainz/django-cors-headers [Accessed 23 October 2021].
