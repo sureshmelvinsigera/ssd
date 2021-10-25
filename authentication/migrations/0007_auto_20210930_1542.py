@@ -15,12 +15,14 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='astronaut',
             name='astronaut_user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='authentication.user'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='authentication.user'),
         ),
         migrations.AlterField(
             model_name='scientist',
             name='scientist_user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='authentication.user'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='authentication.user'),
         ),
         migrations.DeleteModel(
             name='SystemUser',

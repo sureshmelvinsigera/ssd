@@ -14,10 +14,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='HealthReportFeedBack',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('recommendation', models.TextField(blank=True, null=True)),
-                ('astronaut_health_report', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='authentication.astronauthealthreport')),
-                ('scientist', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='authentication.scientist')),
+                ('astronaut_health_report', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='authentication.astronauthealthreport')),
+                ('scientist', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='authentication.scientist')),
             ],
         ),
     ]

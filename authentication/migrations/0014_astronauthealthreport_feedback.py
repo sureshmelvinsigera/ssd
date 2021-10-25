@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='astronauthealthreport',
             name='feedback',
-            field=models.TextField(blank=True, default='No feedback as of yet', null=True),
+            field=models.TextField(
+                blank=True, default='No feedback as of yet', null=True),
         ),
     ]

@@ -38,7 +38,8 @@ class APITestCase(APITestCase):
         # create new API instance
         temp_client = APIClient()
         # pass user information the login end point
-        response = temp_client.post("http://127.0.0.1:8000/auth/users/astronaut/login/", data=self.data, follow=True)
+        response = temp_client.post(
+            "http://127.0.0.1:8000/auth/users/astronaut/login/", data=self.data, follow=True)
         # print(response.data)
         # token = response.data["token"]
         # expected result from the end point

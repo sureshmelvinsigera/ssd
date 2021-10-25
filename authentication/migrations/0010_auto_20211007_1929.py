@@ -34,13 +34,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AstronautHealthReport',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('weight', models.FloatField()),
                 ('blood_type', models.CharField(max_length=10)),
                 ('blood_pressure', models.FloatField()),
                 ('heart_rate', models.FloatField()),
                 ('muscle_mass', models.FloatField()),
-                ('astronaut', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='authentication.astronaut')),
+                ('astronaut', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='authentication.astronaut')),
             ],
         ),
     ]

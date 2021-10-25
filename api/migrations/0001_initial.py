@@ -15,10 +15,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Astronaut',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('first_name', models.CharField(max_length=255)),
                 ('last_name', models.CharField(max_length=255)),
-                ('percent_field', models.PositiveIntegerField(validators=[django.core.validators.MaxValueValidator(100)])),
+                ('percent_field', models.PositiveIntegerField(
+                    validators=[django.core.validators.MaxValueValidator(100)])),
             ],
         ),
     ]

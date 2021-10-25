@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='healthreportfeedback',
             name='astronaut',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='authentication.astronaut'),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to='authentication.astronaut'),
             preserve_default=False,
         ),
     ]

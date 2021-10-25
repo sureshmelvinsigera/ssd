@@ -18,25 +18,26 @@ this must be deployed to a container that receives and translates KAFKA messages
 
 consumer = KafkaConsumer(
     'blood',
-     bootstrap_servers=['172.17.0.1:9092'],
-     auto_offset_reset='earliest',
-     enable_auto_commit=True,
-     group_id='my-group',
-     value_deserializer=lambda x: loads(x.decode('utf-8'))) # Messages need to be decoded before processing the info
+    bootstrap_servers=['172.17.0.1:9092'],
+    auto_offset_reset='earliest',
+    enable_auto_commit=True,
+    group_id='my-group',
+    value_deserializer=lambda x: loads(x.decode('utf-8')))  # Messages need to be decoded before processing the info
 
 # This function inserts the data that comes from the topic, it takes two values for Systolic and Diastolic data
-# as this moment we did not use any other value to be inserted. 
+# as this moment we did not use any other value to be inserted.
+
 
 def insert_ast(sys, dys):
 
     # DB settings to create a connection object
 
     db = psycopg2.connect(user="postgres",
-                                  password="Xoco_137946",
-                                  host="172.17.0.1",
-                                  port="5432",
-                                  database="ssd_iss")
-    
+                          password="Xoco_137946",
+                          host="172.17.0.1",
+                          port="5432",
+                          database="ssd_iss")
+
     """ insert astronaut data into table """
     sql = """INSERT INTO authentication_astronauthealthreport(weight, blood_type, blood_pressure, heart_rate, muscle_mass, astronaut_id)
              VALUES(%s, %s, %s, %s, %s, %s);
@@ -51,7 +52,7 @@ def insert_ast(sys, dys):
     heart_rate = str(dys)
     muscle_mass = '34'
     astronaut_id = '1'
-    
+
     conn = None
     vendor_id = None
     try:
@@ -59,10 +60,11 @@ def insert_ast(sys, dys):
         cur = db.cursor()
         # get the generated id back
         #id = cur.fetchone()[0]
-        
+
         # execute the INSERT statement
-        cur.execute(sql, (weight, blood_type, blood_pressure, heart_rate, muscle_mass, astronaut_id,))
-        
+        cur.execute(sql, (weight, blood_type, blood_pressure,
+                    heart_rate, muscle_mass, astronaut_id,))
+
         # commit the changes to the database
         db.commit()
         # close communication with the database
@@ -70,8 +72,9 @@ def insert_ast(sys, dys):
     except (Exception, psycopg2.DatabaseError) as error:
         curs = db.cursor()
         curs.execute("ROLLBACK")
-        db.commit() # Rollback is needed if the query returned an error
-        logging.basicConfig(level = logging.INFO, filename = 'error.log') # Log the issue that prevented data to be saved, and then try again
+        db.commit()  # Rollback is needed if the query returned an error
+        # Log the issue that prevented data to be saved, and then try again
+        logging.basicConfig(level=logging.INFO, filename='error.log')
     finally:
         if db is not None:
-            db.close() # After insert is done connection is closed
+            db.close()  # After insert is done connection is closed

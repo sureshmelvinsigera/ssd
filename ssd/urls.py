@@ -22,9 +22,12 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_swagger.views import get_swagger_view
 
 router = DefaultRouter()
-router.register(r'astronaut/health-reports', AstronautHealthReportViewSet, basename='astronaut')
-router.register(r'scientist/health-reports', ScientistViewAstronautHealthReportViewSet, basename='scientist')
-router.register(r'astronauts/in-space', AstronautUserListViewSet, basename='astronaut_in_space')
+router.register(r'astronaut/health-reports',
+                AstronautHealthReportViewSet, basename='astronaut')
+router.register(r'scientist/health-reports',
+                ScientistViewAstronautHealthReportViewSet, basename='scientist')
+router.register(r'astronauts/in-space', AstronautUserListViewSet,
+                basename='astronaut_in_space')
 
 schema_view = get_swagger_view(title='Astronaut API')
 
