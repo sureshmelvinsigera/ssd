@@ -1,6 +1,6 @@
 # SSDCS_PCOM7E August 2021
 [![SSD](https://circleci.com/gh/sureshmelvinsigera/ssd.svg?style=svg)](https://circleci.com/gh/sureshmelvinsigera/ssd)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sureshmelvinsigera_ssd&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=sureshmelvinsigera_ssd)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=sureshmelvinsigera_ssd)
 This repository contains a monolithic application comprised of a database, application, and website frontend. 
 ## Installation
 
