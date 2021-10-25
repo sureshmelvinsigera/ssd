@@ -7,6 +7,8 @@ from rest_framework_jwt.settings import api_settings
 
 # Our JWT payload
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+# This variable handles the encoding of JWT tokens. By default, the HS256 encryption algorithm is used,
+# which is HMAC with SHA-256 (Padilla, n.d.), which is necessary to meet the specification.
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
 
@@ -93,17 +95,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def token(self):
         """
-        Allows us to get a user's token by calling `user.token` instead of
-        `user.generate_jwt_token().
-        The `@property` decorator above makes this possible. `token` is called
-        a "dynamic property".
+        In this case, the property decorator makes it possible to access a token by calling `user.token` instead of
+        `user.generate_jwt_token().` (Thinkster, 2021).
         """
         return self._generate_jwt_token()
 
     def _generate_jwt_token(self):
         """
-        Generates a JSON Web Token that stores this user's instance and has an expiry
-        date set to 60 days into the future.
+        Creates a JSON Web Token that is bound to this user's instance. 
+        The method has an underscore prepended to show that the behavior is intended to be private (Bader, 2018), encouraging security through encapsulation.
         """
         payload = jwt_payload_handler(self)
         token = jwt_encode_handler(payload)
@@ -146,3 +146,9 @@ class Scientist(User):
     """
     objects = UserManager()
     specialty = models.CharField(null=False, blank=False, max_length=100)
+
+
+# References
+# Bader, D. (2018) The Meaning of Underscores in Python. Available from: https://dbader.org/blog/meaning-of-underscores-in-python [Accessed 25 October 2021].
+# Padilla, J. (n.d.) REST framework JWT Auth. Available from: https: // jpadilla.github.io/django-rest-framework-jwt/ [Accessed 23 October 2021].
+# Thinkster. (2021) Setting up JWT Authentication. Available from: https://thinkster.io/tutorials/django-json-api/authentication [Accessed 25 October 2021].
