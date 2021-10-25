@@ -5,6 +5,9 @@ from time import sleep
 from json import dumps
 from kafka import KafkaProducer
 
+# initialise environment variables
+from decouple import config
+
 """
 HEARTBEAT SIMULATOR
 
@@ -18,7 +21,7 @@ to produce the data that it is needed.
 # Bootstrap servers information to pass data to Kafka
 
 producer = KafkaProducer(bootstrap_servers=[
-                         '172.17.0.1:9092'], value_serializer=lambda x: dumps(x).encode('utf-8'))
+                         config("BOOTSTRAP_SERVER")], value_serializer=lambda x: dumps(x).encode('utf-8'))
 
 # We found heartrate data CSV taht has data from an actual IoT device, we DO NOT stream this data, we just use it as reference to make our simualation
 
