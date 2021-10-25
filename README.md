@@ -1,6 +1,6 @@
 # SSDCS_PCOM7E August 2021
 [![SSD](https://circleci.com/gh/sureshmelvinsigera/ssd.svg?style=svg)](https://circleci.com/gh/sureshmelvinsigera/ssd)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sureshmelvinsigera_ssd&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=sureshmelvinsigera_ssd)
 This repository contains a monolithic application comprised of a database, application, and website frontend. 
 ## Installation
 
@@ -235,6 +235,8 @@ HTTPS improves website security by encrypting communications and making website 
 Due to the existence of a web frontend, attackers can attempt to find ways of compromising the system by analyzing the JavaScript code. Obfuscation can prevent this from happening by obscuring all JavaScript through various means, such as changing variable names, adding decoy code which does not do anything, and other conversion mechanisms to make it extremely difficult to interpret the code (JScrambler, 2021). This would only be done at the deployment phase of a project, and would not be seen in a repository- only the website. This has not been implemented because the application is currently not hosted online. 
 
 ## References
+```text
 Cloudflare. (2021) Why use HTTPS? Available from: https://www.cloudflare.com/en-gb/learning/ssl/why-use-https/ [Accessed 24 October 2021].
 Github. (2021) Encrypted secrets. Available from: https://docs.github.com/en/actions/security-guides/encrypted-secrets [Accessed 24 October 2021].
 JScrambler. (2021) JavaScript Obfuscation: The Definitive Guide (2021). Available from: https://blog.jscrambler.com/javascript-obfuscation-the-definitive-guide [Accessed 24 October 2021].
+```
