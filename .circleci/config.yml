@@ -24,8 +24,13 @@ jobs:
           name: Running tests and linting code
           command: |
             . venv/bin/activate
-            python3 manage.py test
             echo ENGINE="${ENGINE}" >> "${BASH_ENV}"
+            echo NAME="${NAME}" >> "${BASH_ENV}"
+            echo USER="${USER}" >> "${BASH_ENV}"
+            echo PASSWORD="${PASSWORD}" >> "${BASH_ENV}"
+            echo HOST="${HOST}" >> "${BASH_ENV}"
+            echo PORT="${PORT}" >> "${BASH_ENV}"
+            python3 manage.py test
             autopep8 -d -r --exit-code api/ authentication/ ssd/
       - store_artifacts:
           path: test-reports/
