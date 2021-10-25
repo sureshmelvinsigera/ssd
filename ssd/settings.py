@@ -61,8 +61,7 @@ ROOT_URLCONF = 'ssd.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,8 +79,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ssd.wsgi.application'
 
-# This section uses python-decouple to improve application security (Bastos, 2021). Ordinarily, for a database connection to be established, 
-# database credentials would have to be added directly to the file in plaintext. This is a critical security risk because the repository is publicly hosted and the database is currently hosted on the internet. 
+# This section uses python-decouple to improve application security (Bastos, 2021). Ordinarily, for a database connection to be established,
+# database credentials would have to be added directly to the file in plaintext. This is a critical security risk because the repository is publicly hosted and the database is currently hosted on the internet.
 # Python-decouple is a library that makes it possible to separate sensitive information from source-code by forcing the code to get the data from a configuration file.
 DATABASES = {
     'default': {
@@ -98,7 +97,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 # This variable controls how strict password validation is. Configurations are provided for common password validation requirements
-# (e.g. minimum length). 
+# (e.g. minimum length).
 AUTH_PASSWORD_VALIDATORS = [
     {
         # This configuration checks if a submitted password is too similar to other submitted information (such as usernames and emails)
@@ -172,7 +171,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware"
 ]
 
-# CORS protects the application by preventing external web resources (such as third-party websites) from accessing the endpoints used on the website (Johnson, 2021). 
+# CORS protects the application by preventing external web resources (such as third-party websites) from accessing the endpoints used on the website (Johnson, 2021).
 # This setting allows web requests only from localhost:8002, which is where the frontend is hosted.
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8002",

@@ -9,7 +9,7 @@ class AstronautRegistrationSerializer(serializers.ModelSerializer):
     """Serializers registration requests and creates a new astronaut."""
 
     password = serializers.CharField(
-        # A minimum password length of 8 characters is suggested as a minimum, while a maximum password length of 64 characters is suggested because 
+        # A minimum password length of 8 characters is suggested as a minimum, while a maximum password length of 64 characters is suggested because
         # higher password lengths can be used to perform a denial-of-service due to the increase in hashing computation necessary (OWASP, 2021).
         max_length=64,
         min_length=8,
@@ -21,7 +21,8 @@ class AstronautRegistrationSerializer(serializers.ModelSerializer):
         model = User
         # List all of the fields that could possibly be included in a request
         # or response
-        fields = ('username', 'email', 'first_name', 'last_name', 'password', 'token')
+        fields = ('username', 'email', 'first_name',
+                  'last_name', 'password', 'token')
 
     def create(self, validated_data):
         return Astronaut.objects.create_user(**validated_data)
@@ -30,7 +31,7 @@ class AstronautRegistrationSerializer(serializers.ModelSerializer):
 class AstronautLoginSerializer(serializers.ModelSerializer):
     """Serializer login requests and sign in astronaut user"""
     # Configuring read/write modes creates a mutally exclusive scenario- if read_only is set, the value
-    # cannot be overwritten, and if write_only is set, the value cannot be read, which improves application security. 
+    # cannot be overwritten, and if write_only is set, the value cannot be read, which improves application security.
     # As an example, password is write_only, so it can be changed, but cannot be read.
     email = serializers.CharField(max_length=255, read_only=True)
     username = serializers.CharField(max_length=255)
@@ -88,7 +89,8 @@ class ScientistRegistrationSerializer(serializers.ModelSerializer):
         model = Scientist
         # List all of the fields that could possibly be included in a request
         # or response
-        fields = ('username', 'email', 'first_name', 'last_name', 'password', 'token')
+        fields = ('username', 'email', 'first_name',
+                  'last_name', 'password', 'token')
 
     def create(self, validated_data):
         return Scientist.objects.create_user(**validated_data)

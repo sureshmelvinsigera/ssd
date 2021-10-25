@@ -133,7 +133,8 @@ class AstronautHealthReport(models.Model):
     blood_pressure = models.FloatField(null=False, blank=False)
     heart_rate = models.FloatField(null=False, blank=False)
     muscle_mass = models.FloatField(null=False, blank=False)
-    feedback = models.TextField(null=True, blank=True, default='No feedback as of yet')
+    feedback = models.TextField(
+        null=True, blank=True, default='No feedback as of yet')
     astronaut = models.ForeignKey(Astronaut, on_delete=models.CASCADE)
 
     def __str__(self):

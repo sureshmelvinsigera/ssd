@@ -1,7 +1,9 @@
 from rest_framework import generics
 from rest_framework import viewsets
-from rest_framework import status  # this helps us to know HTTP status of our request
-from rest_framework.response import Response  # We need this to convert DB query to JSON
+# this helps us to know HTTP status of our request
+from rest_framework import status
+# We need this to convert DB query to JSON
+from rest_framework.response import Response
 from rest_framework.views import APIView
 # Not all the models need CRUD, sometimes all we need to do is read
 from rest_framework.viewsets import ReadOnlyModelViewSet
@@ -147,7 +149,8 @@ class AstronautHealthReportViewSet(viewsets.ModelViewSet):
             blood_pressure=data['blood_pressure'],
             heart_rate=data['heart_rate'],
             muscle_mass=data['muscle_mass'],
-            astronaut=Astronaut.objects.filter(username=self.request.user.username).get()
+            astronaut=Astronaut.objects.filter(
+                username=self.request.user.username).get()
         )
         # save astronaut health report object to DB
         astronaut_health_report.save()
