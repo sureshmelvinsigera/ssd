@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import datetime
 from pathlib import Path
 
+# initialise environment variables
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +27,8 @@ SECRET_KEY = 'django-insecure-52*ze5j07eo$ehpj^3_q1n05y#9b61z1(!e2ajmo02vnjb30)c
 # This feature should always be False when the application is deployed to production, because it can leak sensitive information.
 DEBUG = False
 
-ALLOWED_HOSTS = []
+# fix here
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -89,13 +93,12 @@ WSGI_APPLICATION = 'ssd.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': "django.db.backends.postgresql",
-        'NAME': "ssd_iss",
-        'USER': "postgres",
-        # This should be kept as an environment variable and should never be pasted as plaintext in the code, but this was not done to make marking easier- see the README for details.
-        'PASSWORD': "Xoco_137946",
-        'HOST': "3.129.7.239",
-        'PORT': "5432",
+        'ENGINE': config('ENGINE'),
+        'NAME': config('NAME'),
+        'USER': config('USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
+        'PORT': config('PORT'),
     }
 }
 
