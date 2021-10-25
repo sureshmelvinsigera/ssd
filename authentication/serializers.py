@@ -141,6 +141,14 @@ class ScientistLoginSerializer(serializers.ModelSerializer):
 
 
 class UserListSerializer(serializers.ModelSerializer):
+    """
+    Serializers allow complex data such as querysets and model instances to be converted to native Python datatypes
+    that can then be easily rendered into JSON, XML or other content types.
+    Serializers also provide deserialization, allowing parsed data to be converted back into complex types,
+    after first validating the incoming data.
+    Here we Serialize User all the fields from the user model, expect the password
+    """
+
     class Meta:
         model = User
         fields = (
@@ -151,6 +159,11 @@ class UserListSerializer(serializers.ModelSerializer):
 
 
 class AstronautHealthReportSerializer(serializers.ModelSerializer):
+    """
+        Here we Serialize User all the fields from the AstronautHealthReport model
+
+    """
+
     class Meta:
         model = AstronautHealthReport
         fields = (
@@ -164,6 +177,11 @@ class AstronautHealthReportSerializer(serializers.ModelSerializer):
 
 
 class ScientistViewAstronautHealthReportSerializer(serializers.ModelSerializer):
+    """
+            Here we Serialize User all the fields from the AstronautHealthReport model, and obtain specific astronaut
+            user object. The scientist can perform CRUD operation on the AstronautHealthReport object but not the
+            astronaut object it self. Therefore, the serializer field is set to ReadOnlyField
+    """
     astronaut = serializers.ReadOnlyField(source='astronaut.username')
 
     class Meta:
