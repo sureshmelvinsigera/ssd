@@ -7,6 +7,8 @@ from rest_framework.test import APIClient
 from .models import Astronaut, Scientist, User
 
 # Note: all passwords and usernames used here are test data, and therefore pose no threat.
+
+
 class APITestCase(APITestCase):
     """
     API test case for user login
