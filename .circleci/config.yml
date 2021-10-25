@@ -17,11 +17,11 @@ jobs:
           paths:
             - "venv"
       - run:
-          name: Testing environment variables
-          command: |
-            echo ${ENGINE} 
-      - run:
-          name: Running tests and linting code
+          name: Running tests
+          # Environment variables are used here to ensure that all sensitive data is kept out of the source code.
+          # In addition, CircleCI also masks these variables after they are set (e.g., a variable with the value "1234" will be displayed as "***34")
+          # further reducing the attack surface because the variable itself cannot be read back from CircleCI's UI. Masking is also applied to shell commands,
+          # so the echo command can't be used to display a variable's true value
           command: |
             . venv/bin/activate
             echo ENGINE="${ENGINE}" >> "${BASH_ENV}"
@@ -31,6 +31,10 @@ jobs:
             echo HOST="${HOST}" >> "${BASH_ENV}"
             echo PORT="${PORT}" >> "${BASH_ENV}"
             python3 manage.py test
+      - run:
+          name: Linting code according to PEP 8 
+          command: |
+            . venv/bin/activate
             autopep8 -d -r --exit-code api/ authentication/ ssd/
       - store_artifacts:
           path: test-reports/
