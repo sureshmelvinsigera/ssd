@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    context: default
     docker:
       - image: circleci/python:3.6
     steps:
@@ -30,3 +29,9 @@ jobs:
       - store_artifacts:
           path: test-reports/
           destination: python_app
+
+workflows: # a single workflow with a single job called build
+  build:
+    jobs:
+      - build:
+          context: default
