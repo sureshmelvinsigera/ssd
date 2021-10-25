@@ -2,6 +2,7 @@ import pandas as pd
 import random
 from time import sleep
 from json import dumps
+import logging
 from kafka import KafkaProducer
 
 """
@@ -13,7 +14,7 @@ this data is created following a NORMAL/ELEVATED/HIGH pattern (Whelton et al. 20
 """
 # Bootstrap servers information to pass data to Kafka 
 
-producer = KafkaProducer(bootstrap_servers=['172.17.0.1:9092'], value_serializer=lambda x: dumps(x).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers=['${KAFKA_IP}:9092'], value_serializer=lambda x: dumps(x).encode('utf-8'))
 
 # This function returns systolic data
 
@@ -50,11 +51,17 @@ rate = 'high' # Changing the variable syncs both variables to give a consistent 
 sys = retSys(rate) 
 dys = retDys(rate)
 
+count = 0
+
 for x in range(1440): # Produces 24 hours of heartbeat data 
     e = round(random.uniform(sys[0], sys[1]), 1) # Randomize sys variable
     f = round(random.uniform(dys[0], dys[0]), 1) # Randomize dys variable
-    data = {'sys' : e, 'dys' : f, 'astronaut_id': 1} # Create 
-    producer.send('blood', value=data)
+    data = {'sys' : e, 'dys' : f, 'astronaut_id': 1, 'count': count} # Create 
+    try:
+        producer.send('blood', value=data)
+    except:
+        logging.basicConfig(level = logging.INFO, filename = 'error.log') # Log the issue that prevented data to be saved, and then try again
+        continue
     print(data)
     sleep(60)
 
