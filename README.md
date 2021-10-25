@@ -237,6 +237,7 @@ Due to the existence of a web frontend, attackers can attempt to find ways of co
 ## References
 ```text
 Cloudflare. (2021) Why use HTTPS? Available from: https://www.cloudflare.com/en-gb/learning/ssl/why-use-https/ [Accessed 24 October 2021].
+Django documentation. (2021) Customizing authentication in Django. Available from: https://docs.djangoproject.com/en/3.2/topics/auth/customizing/ [Accessed 25 October 2021].
 Github. (2021) Encrypted secrets. Available from: https://docs.github.com/en/actions/security-guides/encrypted-secrets [Accessed 24 October 2021].
 JScrambler. (2021) JavaScript Obfuscation: The Definitive Guide (2021). Available from: https://blog.jscrambler.com/javascript-obfuscation-the-definitive-guide [Accessed 24 October 2021].
 ```
