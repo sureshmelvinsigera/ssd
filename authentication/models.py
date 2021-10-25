@@ -65,7 +65,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     """
-    Class to represent user model
+    Class to represent user model, Since we are creating your own User model we need to use AbstractBaseUser class.
+    To make it easy to include Django's permission framework into your own user class, Django provides PermissionsMixin
     """
     username = models.CharField(db_index=True, max_length=255, unique=True)
     email = models.EmailField(db_index=True, unique=True)
@@ -111,6 +112,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Astronaut(User):
+    """
+    Creating custom Astronaut user model
+    """
     objects = UserManager()
     age = models.IntegerField(
         default=1,
@@ -121,6 +125,9 @@ class Astronaut(User):
 
 
 class AstronautHealthReport(models.Model):
+    """
+    Creating astronaut health report model
+    """
     weight = models.FloatField(null=False, blank=False)
     blood_type = models.CharField(null=False, blank=False, max_length=10)
     blood_pressure = models.FloatField(null=False, blank=False)
@@ -134,5 +141,8 @@ class AstronautHealthReport(models.Model):
 
 
 class Scientist(User):
+    """
+    Creating scientist model
+    """
     objects = UserManager()
     specialty = models.CharField(null=False, blank=False, max_length=100)
