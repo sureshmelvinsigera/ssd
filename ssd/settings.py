@@ -80,17 +80,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ssd.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
+# This section uses python-decouple to improve application security (Bastos, 2021). Ordinarily, for a database connection to be established, 
+# database credentials would have to be added directly to the file in plaintext. This is a critical security risk because the repository is publicly hosted and the database is currently hosted on the internet. 
+# Python-decouple is a library that makes it possible to separate sensitive information from source-code by forcing the code to get the data from a configuration file.
 DATABASES = {
     'default': {
         'ENGINE': config('ENGINE'),
@@ -189,4 +181,5 @@ CORS_ALLOWED_ORIGINS = [
 ROOT_URLCONF = 'ssd.urls'
 
 # References
+# Bastos, H. (2021) Python Decouple: Strict separation of settings from code. Available from: https://github.com/henriquebastos/python-decouple/ [Accessed 25 October 2021].
 # Johnson, A. (2021). django-cors-headers. Available from: https://github.com/adamchainz/django-cors-headers [Accessed 23 October 2021].
