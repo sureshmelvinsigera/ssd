@@ -29,6 +29,9 @@ class AstronautRegistrationSerializer(serializers.ModelSerializer):
 
 class AstronautLoginSerializer(serializers.ModelSerializer):
     """Serializer login requests and sign in astronaut user"""
+    # Configuring read/write modes creates a mutally exclusive scenario- if read_only is set, the value
+    # cannot be overwritten, and if write_only is set, the value cannot be read, which improves application security. 
+    # As an example, password is write_only, so it can be changed, but cannot be read.
     email = serializers.CharField(max_length=255, read_only=True)
     username = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=255, write_only=True)
@@ -54,6 +57,7 @@ class AstronautLoginSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'A password is required to login'
             )
+        # Django handles the process of authentication.
         user = authenticate(username=username, password=password)
         if user is None:
             raise serializers.ValidationError(
@@ -92,6 +96,9 @@ class ScientistRegistrationSerializer(serializers.ModelSerializer):
 
 class ScientistLoginSerializer(serializers.ModelSerializer):
     """Serializer login requests and sign in astronaut user"""
+    # Configuring read/write modes creates a mutally exclusive scenario- if read_only is set, the value
+    # cannot be overwritten, and if write_only is set, the value cannot be read, which improves application security.
+    # As an example, password is write_only, so it can be changed, but cannot be read.
     email = serializers.CharField(max_length=255, read_only=True)
     username = serializers.CharField(max_length=255)
     password = serializers.CharField(max_length=255, write_only=True)
