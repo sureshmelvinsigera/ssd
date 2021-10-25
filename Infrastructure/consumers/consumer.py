@@ -3,6 +3,8 @@ from json import loads
 import logging
 import psycopg2
 
+# initialise environment variables
+from decouple import config
 
 """
 
@@ -18,7 +20,7 @@ this must be deployed to a container that receives and translates KAFKA messages
 
 consumer = KafkaConsumer(
     'blood',
-    bootstrap_servers=['172.17.0.1:9092'],
+    bootstrap_servers=[config("BOOTSTRAP_SERVER")],
     auto_offset_reset='earliest',
     enable_auto_commit=True,
     group_id='my-group',
@@ -32,11 +34,11 @@ def insert_ast(sys, dys):
 
     # DB settings to create a connection object
 
-    db = psycopg2.connect(user="postgres",
-                          password="Xoco_137946",
-                          host="172.17.0.1",
-                          port="5432",
-                          database="ssd_iss")
+    db = psycopg2.connect(user=config("USER"),
+                          password=config("PASSWORD"),
+                          host=config("HOST"),
+                          port=config("PORT"),
+                          database=config("DATABASE"))
 
     """ insert astronaut data into table """
     sql = """INSERT INTO authentication_astronauthealthreport(weight, blood_type, blood_pressure, heart_rate, muscle_mass, astronaut_id)

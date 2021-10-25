@@ -92,6 +92,7 @@ psycopg2==2.9.1
 ptyprocess @ file:///home/conda/feedstock_root/build_artifacts/ptyprocess_1609419310487/work/dist/ptyprocess-0.7.0-py2.py3-none-any.whl
 pycosat @ file:///home/conda/feedstock_root/build_artifacts/pycosat_1610094799048/work
 pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1593275161868/work
+python-decouple==3.5
 pycurl==7.43.0.6
 Pygments @ file:///home/conda/feedstock_root/build_artifacts/pygments_1620245170812/work
 PyJWT @ file:///home/conda/feedstock_root/build_artifacts/pyjwt_1619620644068/work
