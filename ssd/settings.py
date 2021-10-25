@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-52*ze5j07eo$ehpj^3_q1n05y#9b61z1(!e2ajmo02vnjb30)c'
 
 # This feature should always be False when the application is deployed to production, because it can leak sensitive information.
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
