@@ -42,7 +42,9 @@ for x in range(1000):
         # Sends the data to the selected topic, in this case bloodp
         producer.send('blood', value=data)
     except:
-        # Log the issue that prevented data to be saved, and then try again
-        logging.basicConfig(level=logging.INFO, filename='error.log')
+        # Log the issue that prevented data to be saved, and then try again. This helps achieve OWASP A10 because visibility is provided.
+        # The only exception that can be raised by producer.send() is a KafkaTimeoutError, making it possible to output one log message.
+        logging.error(
+            "A timeout has occurred sending the data, attempted to send data for astronaut_id %s", data["astronaut_id"])
         continue
     sleep(900)  # The producer waits 15 minutes to stream new data, this value is expressed in seconds, in this case 900 seconds

@@ -73,8 +73,8 @@ def insert_ast(sys, dys):
         curs = db.cursor()
         curs.execute("ROLLBACK")
         db.commit()  # Rollback is needed if the query returned an error
-        # Log the issue that prevented data to be saved, and then try again
-        logging.basicConfig(level=logging.INFO, filename='error.log')
+        # Log the issue that prevented data to be saved, and then try again. This helps achieve OWASP A10 because visibility is provided.
+        logging.error("Failed to insert entry into database, cause %s", error)
     finally:
         if db is not None:
             db.close()  # After insert is done connection is closed
