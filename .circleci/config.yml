@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    context: default
     docker:
       - image: circleci/python:3.6
     steps:
@@ -20,6 +21,7 @@ jobs:
           name: Running tests and linting code
           command: |
             . venv/bin/activate
+            echo ${ENGINE} 
             python3 manage.py test
             autopep8 -d -r --exit-code api/ authentication/ ssd/
       - store_artifacts:
