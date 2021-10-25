@@ -21,9 +21,12 @@ jobs:
           name: Running tests and linting code
           command: |
             . venv/bin/activate
-            echo ${ENGINE} 
             python3 manage.py test
             autopep8 -d -r --exit-code api/ authentication/ ssd/
+      - run:
+          name: Testing environment variables
+          command: |
+            echo ${ENGINE} 
       - store_artifacts:
           path: test-reports/
           destination: python_app
