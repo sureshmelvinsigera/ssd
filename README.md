@@ -6,23 +6,11 @@ This repository contains a monolithic application comprised of a database, appli
 
 ## Installation
 
-Clone git repository
+Clone the repository:
 
 ```
 git clone https://github.com/sureshmelvinsigera/ssd.git
 cd ssd
-```
-
-Create Python3 virtual environment
-
-```
-python3 -m venv <name_of_virtualenv>
-````
-
-Activate virtual environment
-
-```
-source venv/bin/activate
 ```
 
 Run the following command in your terminal to install the requirements:
@@ -31,25 +19,20 @@ Run the following command in your terminal to install the requirements:
 pip install -r requirements.txt
 ```
 
-Note: you may need to use `pip3` instead of `pip` if you are using a Linux operating system.
-
 Run the application by using the following commands:
 
 ```
 python manage.py migrate
 python manage.py runserver
 ```
-
-Run the website by typing the following in the root directory:
+This will start the Django application. You will then need to begin hosting the website. Run the website by running the following command in the root directory, and then open the website by visiting `localhost:8002` in your web browser.
+ 
 
 ```
 python -m http.server 8002
 ```
 
-Open the website by visiting `localhost:8002` in your web browser.
-
-Note that `python manage.py runserver` is sufficient to run the application; `python manage.py migrate` must be executed
-if the model-based code has changed.
+Note: you may need to use `python3` and `pip3` instead of `python` and `pip` respectively for these commands, if you are using a Linux operating system.
 
 ## API Endpoints
 
